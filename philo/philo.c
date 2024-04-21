@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 20:32:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/04/21 21:03:01 by zech-chi         ###   ########.fr       */
+/*   Created: 2024/04/21 20:25:19 by zech-chi          #+#    #+#             */
+/*   Updated: 2024/04/21 21:07:58 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "philo.h"
 
-# include <unistd.h>
-# include <stdio.h>
-
-typedef struct	s_data
+void	ft_puterror(void)
 {
-	int	n_philosopher;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	max_num_of_meals;
-}	t_data;
+	write(2, "Error\n", 7);
+}
 
-#endif
+int	main(int ac, char **av)
+{
+	t_data	data;
+
+	if (ft_parse_data(&data, ac, av))
+		return (ft_puterror(), 1);
+	printf("good\n");
+	return (0);
+}
