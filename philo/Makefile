@@ -6,7 +6,9 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS =	philo.c
+SRCS =	philo.c \
+		parsing.c \
+		to_remove.c
 
 OBJS = $(SRCS:.c=.o)
 
