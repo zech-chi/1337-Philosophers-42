@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 21:04:37 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/04/22 18:53:32 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:38:19 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,22 @@ static int	ft_atoi_plus(char *str, int *error)
 	return (res);
 }
 
-int	ft_parse_data(t_data *data, int ac, char **av)
+int	ft_parse_data(t_data *table, int ac, char **av)
 {
 	int	error;
 
 	if (ac < 5 || ac > 6)
 		return (1);
 	error = 0;
-	data->n_philosopher = ft_atoi_plus(av[1], &error);
-	data->time_to_die = ft_atoi_plus(av[2], &error);
-	data->time_to_eat = ft_atoi_plus(av[3], &error);
-	data->time_to_sleep = ft_atoi_plus(av[4], &error);
+	table->n_philosopher = ft_atoi_plus(av[1], &error);
+	table->time_to_die = ft_atoi_plus(av[2], &error);
+	table->time_to_eat = ft_atoi_plus(av[3], &error);
+	table->time_to_sleep = ft_atoi_plus(av[4], &error);
 	if (ac == 6)
-		data->max_meals = ft_atoi_plus(av[5], &error);
+		table->max_meals = ft_atoi_plus(av[5], &error);
 	else
-		data->max_meals = -1;
+		table->max_meals = -1;
+	if (error)
+		ft_put_error(PARSING_ERROR);
 	return (error);
 }

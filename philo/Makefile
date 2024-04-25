@@ -6,8 +6,14 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS =	philo.c \
+PTHREAD = -pthread
+
+SRCS =	main.c \
 		parsing.c \
+		tools.c \
+		forks.c \
+		philos.c \
+		simulation.c \
 		to_remove.c
 
 OBJS = $(SRCS:.c=.o)
@@ -15,7 +21,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 %.o: %.c philo.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(PTHREAD) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
