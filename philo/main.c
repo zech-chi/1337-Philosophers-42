@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 20:25:19 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/04/25 16:33:42 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:41:14 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int ac, char **av)
 		return (FAILED);
 	if (ft_philos_create(&table))
 		return (ft_free_them_all(&table), FAILED);
+	ft_forks_init(&table);
 	ft_philos_init(&table);
 	ft_print_data(table);
 	if (ft_start_simulation(&table))

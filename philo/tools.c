@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:53:32 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/04/25 18:20:01 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:27:45 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void	ft_put_error(int error_id)
 		ft_put_on_stderr("Error: failed to create mutex\n");
 	else if (error_id == MUTEX_DESTROY_ERROR)
 		ft_put_on_stderr("Error: failed to destroy mutex\n");
+	else if (error_id == MUTEX_LOCK_ERROR)
+		ft_put_on_stderr("Error: failed to lock mutex\n");
+	else if (error_id == MUTEX_UNLOCK_ERROR)
+		ft_put_on_stderr("Error: failed to unlock mutex\n");
 }
 
 void	ft_free_them_all(t_data *table)
@@ -72,4 +76,14 @@ size_t	ft_get_time(void)
 	gettimeofday(&tv, NULL);
 	time_ms = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (time_ms);
+}
+
+size_t	ft_time(t_philo *philo)
+{
+	size_t	cur_time;
+	size_t	diff;
+
+	cur_time = ft_get_time();
+	diff = cur_time - philo->table->start_time;
+	return (diff);
 }

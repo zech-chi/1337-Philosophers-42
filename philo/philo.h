@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 20:32:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/04/25 18:19:30 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:28:01 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@
 # define CREAT_THREAD_ERROR 2
 # define JOIN_THREAD_ERROR 3
 # define MUTEX_CREAT_ERROR 4
-# define MUTEX_DESTROY_ERROR 4
+# define MUTEX_DESTROY_ERROR 5
+# define MUTEX_LOCK_ERROR 6
+# define MUTEX_UNLOCK_ERROR 7
 
 //direction
 # define RIGHT 1
@@ -80,11 +82,14 @@ void		ft_put_error(int error_id);
 void		ft_free_them_all(t_data *table);
 void		ft_put_action(time_t time, int philo_id, int action);
 size_t		ft_get_time(void);
+size_t		ft_time(t_philo *philo);
 
 /************************* forks.c *************************/
 int			ft_forks_create(t_data *table);
 int			ft_forks_init(t_data *table);
 int			ft_forks_destroy(t_data *table, int size);
+void		ft_forks_up(t_philo *philo);
+void		ft_forks_down(t_philo *philo);
 
 /************************* philos.c *************************/
 int			ft_philos_create(t_data *table);

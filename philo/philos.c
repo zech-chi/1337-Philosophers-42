@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:35:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/04/25 16:35:29 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:26:40 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_philos_create(t_data *table)
 
 int	ft_philos_join(t_data *table)
 {
-	int	i;
+	int			i;
 	pthread_t	th_id;
 
 	i = 0;

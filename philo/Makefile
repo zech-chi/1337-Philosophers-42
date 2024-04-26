@@ -4,7 +4,7 @@ RM = rm -f
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror# -fsanitize=thread -g
 
 PTHREAD = -pthread
 
@@ -24,7 +24,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) $(PTHREAD) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(PTHREAD) $^ -o $@
 
 clean:
 	$(RM) $(OBJS)
