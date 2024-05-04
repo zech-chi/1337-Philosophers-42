@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 20:25:19 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/04/26 14:41:14 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:40:46 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ void	ft_init_table(t_data *table)
 {
 	table->philosophers = NULL;
 	table->forks = NULL;
-	table->dead = 0;
-	table->error = 0;
+	table->stop = 0;
+	pthread_mutex_init(&(table->put_action_mtx), NULL);
+	pthread_mutex_init(&(table->stop_mtx), NULL);
+	pthread_mutex_init(&(table->time_mtx), NULL);
+	pthread_mutex_init(&(table->diff_time_mtx), NULL);
 }
 
 /*

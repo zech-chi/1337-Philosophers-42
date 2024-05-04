@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:53:32 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/04/26 14:27:45 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/02 19:13:25 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,36 +54,21 @@ void	ft_free_them_all(t_data *table)
 	table->forks = NULL;
 }
 
-void	ft_put_action(time_t time, int philo_id, int action)
+void	ft_put_action(time_t time, t_philo *philo, int action)
 {
-	if (action == TAKE_FORK)
-		printf("%ld %d has taken a fork\n", time, philo_id + 1);
-	else if (action == EAT)
-		printf("%ld %d is eating\n", time, philo_id + 1);
-	else if (action == SLEEP)
-		printf("%ld %d is sleeping\n", time, philo_id + 1);
-	else if (action == THINK)
-		printf("%ld %d is thinking\n", time, philo_id + 1);
-	else if (action == DIED)
-		printf("%ld %d died\n", time, philo_id + 1);
+	pthread_mutex_lock(&(philo->table->put_action_mtx));
+	if (action == TAKE_FORK && !ft_stop_get(philo->table))
+		printf("%ld %d has taken a fork\n", time, philo->id + 1);
+	else if (action == EAT && !ft_stop_get(philo->table))
+		printf("%ld %d is eating\n", time, philo->id + 1);
+	else if (action == SLEEP && !ft_stop_get(philo->table))
+		printf("%ld %d is sleeping\n", time, philo->id + 1);
+	else if (action == THINK && !ft_stop_get(philo->table))
+		printf("%ld %d is thinking\n", time, philo->id + 1);
+	else if (action == DIED && !ft_stop_get(philo->table))
+		printf("%ld %d died\n", time, philo->id + 1);
+	pthread_mutex_unlock(&(philo->table->put_action_mtx));
 }
 
-size_t	ft_get_time(void)
-{
-	struct timeval	tv;
-	size_t			time_ms;
 
-	gettimeofday(&tv, NULL);
-	time_ms = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	return (time_ms);
-}
 
-size_t	ft_time(t_philo *philo)
-{
-	size_t	cur_time;
-	size_t	diff;
-
-	cur_time = ft_get_time();
-	diff = cur_time - philo->table->start_time;
-	return (diff);
-}

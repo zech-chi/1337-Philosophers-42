@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:16:51 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/04/26 14:23:48 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/04 10:19:46 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,15 @@ void	ft_forks_up(t_philo *philo)
 	if (pthread_mutex_lock(left_fork))
 	{
 		ft_put_error(MUTEX_LOCK_ERROR);
-		philo->table->error = 1;
+		ft_stop_set(philo->table);
 	}
-	ft_put_action(ft_time(philo), philo->id, TAKE_FORK);
+	ft_put_action(ft_time(philo), philo, TAKE_FORK);
 	if (pthread_mutex_lock(right_fork))
 	{
 		ft_put_error(MUTEX_LOCK_ERROR);
-		philo->table->error = 1;
+		ft_stop_set(philo->table);
 	}
-	ft_put_action(ft_time(philo), philo->id, TAKE_FORK);
+	ft_put_action(ft_time(philo), philo, TAKE_FORK);
 }
 
 void	ft_forks_down(t_philo *philo)
@@ -89,11 +89,11 @@ void	ft_forks_down(t_philo *philo)
 	if (pthread_mutex_unlock(left_fork))
 	{
 		ft_put_error(MUTEX_UNLOCK_ERROR);
-		philo->table->error = 1;
+		ft_stop_set(philo->table);
 	}
 	if (pthread_mutex_unlock(right_fork))
 	{
 		ft_put_error(MUTEX_UNLOCK_ERROR);
-		philo->table->error = 1;
+		ft_stop_set(philo->table);
 	}
 }

@@ -6,73 +6,107 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:29:30 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/04/26 14:38:53 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/04 10:46:28 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_ms_sleep(size_t t_ms)
+static void	ft_eat(t_philo *philo)
 {
-	size_t	cur_time;
-
-	cur_time = ft_get_time();
-	while (ft_get_time() - cur_time < t_ms)
+	if (ft_stop_get(philo->table))
+		return ;
+	ft_put_action(ft_time(philo), philo, EAT);
+	if (pthread_mutex_lock(&philo->last_meal_time_mtx))
 	{
-		usleep(10);
+		ft_put_error(MUTEX_LOCK_ERROR);
+		ft_stop_set(philo->table);
 	}
+	philo->last_meal_time = ft_get_time();
+	if (pthread_mutex_unlock(&philo->last_meal_time_mtx))
+	{
+		ft_put_error(MUTEX_UNLOCK_ERROR);
+		ft_stop_set(philo->table);
+	}
+	if (pthread_mutex_lock(&philo->eat_n_meal_mtx))
+	{
+		ft_put_error(MUTEX_UNLOCK_ERROR);
+		ft_stop_set(philo->table);
+	}
+	(philo->eat_n_meal)++;
+	if (pthread_mutex_unlock(&philo->eat_n_meal_mtx))
+	{
+		ft_put_error(MUTEX_UNLOCK_ERROR);
+		ft_stop_set(philo->table);
+	}
+	ft_ms_sleep(philo->time_to_eat);
 }
 
-void	ft_eat(t_philo *philo)
+static void	ft_sleep(t_philo *philo)
 {
-	ft_put_action(ft_time(philo), philo->id, EAT);
-	ft_ms_sleep(philo->table->time_to_eat);
+	if (ft_stop_get(philo->table))
+		return ;
+	ft_put_action(ft_time(philo), philo, SLEEP);
+	ft_ms_sleep(philo->time_to_sleep);
 }
 
-void	ft_sleep(t_philo *philo)
+static void	ft_think(t_philo *philo)
 {
-	ft_put_action(ft_time(philo), philo->id, SLEEP);
-	ft_ms_sleep(philo->table->time_to_sleep);
+	if (ft_stop_get(philo->table))
+		return ;
+	ft_put_action(ft_time(philo), philo, THINK);
 }
 
-void	*ft_routine(void *arg)
+//static void	ft_dead(t_philo *philo)
+//{
+//	if (philo->table->stop)
+//		return ;
+//	ft_put_action(ft_time(philo), philo->id, DIED);
+//	philo->dead = 1;
+//}
+
+static void	*ft_routine(void *arg)
 {
-	t_philo	*philo;
+	t_philo			*philo;
 
 	philo = (t_philo *)arg;
-	philo->last_action_time = ft_get_time();
 	if (philo->id % 2)
 		ft_ms_sleep(50);
-	while (1)
+	while (ft_stop_get(philo->table) == 0)
 	{
 		ft_forks_up(philo);
 		ft_eat(philo);
 		ft_forks_down(philo);
+		//if (philo->eat_n_meal == philo->max_meals)
+		//	break;
 		ft_sleep(philo);
-		ft_put_action(ft_time(philo), philo->id, THINK);
+		ft_think(philo);
 	}
 	return (NULL);
 }
 
 int	ft_start_simulation(t_data *table)
 {
-	pthread_t	*th_id;
-	int			i;
+	pthread_t	*th_philo_id;
+	pthread_t	th_monitor_id;
 
-	table->start_time = ft_get_time();
+	int			i;
+	if (ft_monitor_thread(table, &th_monitor_id))
+		return (FAILED);
 	i = 0;
 	while (i < table->n_philosopher)
 	{
-		th_id = &((table->philosophers)[i].thread_id);
-		if (pthread_create(th_id, NULL, &ft_routine, &(table->philosophers[i])))
+		th_philo_id = &((table->philosophers)[i].thread_id);
+		if (pthread_create(th_philo_id, NULL, &ft_routine, &(table->philosophers[i])))
 		{
 			ft_put_error(CREAT_THREAD_ERROR);
-			table->error = 1;
+			table->stop = 1;
 			return (FAILED);
 		}
 		i++;
 	}
 	if (ft_philos_join(table))
 		return (FAILED);
+	pthread_join(th_monitor_id, NULL);
 	return (SUCCESS);
 }
