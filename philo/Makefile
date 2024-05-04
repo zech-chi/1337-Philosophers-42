@@ -10,14 +10,14 @@ PTHREAD = -pthread
 
 SRCS =	main.c \
 		parsing.c \
-		tools.c \
-		forks.c \
-		philos.c \
-		simulation.c \
-		time.c \
-		monitor.c \
-		stop.c \
-		to_remove.c
+		tools.c
+#		forks.c \
+#		philos.c \
+#		simulation.c \
+#		time.c \
+#		monitor.c \
+#		stop.c \
+#		to_remove.c
 
 OBJS = $(SRCS:.c=.o)
 

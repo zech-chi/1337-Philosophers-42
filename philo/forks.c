@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/25 12:16:51 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/04 10:19:46 by zech-chi         ###   ########.fr       */
+/*   Created: 2024/05/04 15:49:05 by zech-chi          #+#    #+#             */
+/*   Updated: 2024/05/04 16:01:56 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_forks_create(t_data *table)
+int	ft_forks_create(t_table *table)
 {
-	table->forks = malloc(sizeof(pthread_mutex_t) * table->n_philosopher);
-	if (!table->forks)
+	table->mtx_forks = malloc(sizeof(pthread_mutex_t) * table->n_philosophers);
+	if (!table->mtx_forks)
 	{
 		ft_put_error(MALLOC_ERROR);
 		return (FAILED);
@@ -23,14 +23,14 @@ int	ft_forks_create(t_data *table)
 	return (SUCCESS);
 }
 
-int	ft_forks_init(t_data *table)
+int	ft_forks_init(t_table *table)
 {
 	int	i;
 
 	i = 0;
-	while (i < table->n_philosopher)
+	while (i < table->n_philosophers)
 	{
-		if (pthread_mutex_init(table->forks + i, NULL))
+		if (pthread_mutex_init(table->mtx_forks + i, NULL))
 		{
 			ft_put_error(MUTEX_CREAT_ERROR);
 			ft_forks_destroy(table, i);
@@ -41,21 +41,22 @@ int	ft_forks_init(t_data *table)
 	return (SUCCESS);
 }
 
-int	ft_forks_destroy(t_data *table, int size)
+int	ft_forks_destroy(t_table *table, int size)
 {
 	int	i;
+	int	error;
 
+	error = SUCCESS;
 	i = 0;
 	while (i < size)
 	{
-		if (pthread_mutex_destroy(table->forks + i))
-		{
-			ft_put_error(MUTEX_DESTROY_ERROR);
-			return (FAILED);
-		}
+		if (pthread_mutex_destroy(table->mtx_forks + i))
+			error = FAILED;
 		i++;
 	}
-	return (SUCCESS);
+	if (error)
+		ft_put_error(MUTEX_DESTROY_ERROR);
+	return (error);
 }
 
 void	ft_forks_up(t_philo *philo)
@@ -63,20 +64,22 @@ void	ft_forks_up(t_philo *philo)
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 
-	left_fork = &(philo->table->forks)[philo->left_fork_id];
-	right_fork = &(philo->table->forks)[philo->right_fork_id];
+	left_fork = &(philo->table->mtx_forks)[philo->id_left_fork];
+	right_fork = &(philo->table->mtx_forks)[philo->id_right_fork];
 	if (pthread_mutex_lock(left_fork))
 	{
 		ft_put_error(MUTEX_LOCK_ERROR);
 		ft_stop_set(philo->table);
 	}
-	ft_put_action(ft_time(philo), philo, TAKE_FORK);
+	else
+		ft_put_action(ft_time(philo), philo, TAKE_FORK);
 	if (pthread_mutex_lock(right_fork))
 	{
 		ft_put_error(MUTEX_LOCK_ERROR);
 		ft_stop_set(philo->table);
 	}
-	ft_put_action(ft_time(philo), philo, TAKE_FORK);
+	else
+		ft_put_action(ft_time(philo), philo, TAKE_FORK);
 }
 
 void	ft_forks_down(t_philo *philo)
@@ -84,8 +87,8 @@ void	ft_forks_down(t_philo *philo)
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 
-	left_fork = &(philo->table->forks)[philo->left_fork_id];
-	right_fork = &(philo->table->forks)[philo->right_fork_id];
+	left_fork = &(philo->table->mtx_forks)[philo->id_left_fork];
+	right_fork = &(philo->table->mtx_forks)[philo->id_right_fork];
 	if (pthread_mutex_unlock(left_fork))
 	{
 		ft_put_error(MUTEX_UNLOCK_ERROR);
