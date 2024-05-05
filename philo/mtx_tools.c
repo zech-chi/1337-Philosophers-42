@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mtx_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 11:37:09 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/05 21:52:09 by zech-chi         ###   ########.fr       */
+/*   Created: 2024/05/05 18:38:54 by zech-chi          #+#    #+#             */
+/*   Updated: 2024/05/05 19:03:36 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+int	ft_mtx_lock(t_table *table, pthread_mutex_t *mtx_ptr)
 {
-	t_table	table;
+	if (pthread_mutex_lock(mtx_ptr))
+	{
+		ft_put_error(MUTEX_LOCK_ERROR);
+		ft_mtx_set_stop(table);
+		return (FAILED);
+	}
+	return (SUCCESS);
+}
 
-	memset(&table, 0, sizeof(t_table));
-	if (ft_parsing(&table, ac, av))
+int	ft_mtx_unlock(t_table *table, pthread_mutex_t *mtx_ptr)
+{
+	if (pthread_mutex_unlock(mtx_ptr))
+	{
+		ft_put_error(MUTEX_UNLOCK_ERROR);
+		ft_mtx_set_stop(table);
 		return (FAILED);
-	if (ft_table_init(&table))
-		return (FAILED);
-	ft_simulation(&table);
-	printf("heror\n");
-	return (0);
+	}
+	return (SUCCESS);
 }

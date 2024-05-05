@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:10:22 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/04 16:14:35 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:42:39 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,25 +79,67 @@ struct s_table
 	pthread_mutex_t	mtx_start;
 	pthread_mutex_t	mtx_stop;
 	pthread_mutex_t	mtx_time_start;
+	pthread_mutex_t	mtx_put_action;
 };
 
 /************************* parsing.c *************************/
-int	ft_parsing(t_table *table, int ac, char **av);
+int		ft_parsing(t_table *table, int ac, char **av);
+
+/************************* time.c *************************/
+size_t	ft_time_cur_ms(void);
+void	ft_time_sleep_ms(size_t t_ms);
+size_t	ft_time_1(t_table *table);
+size_t	ft_time_2(t_philo *philo);
 
 /************************* tools.c *************************/
 void	ft_put_on_stderr(char *msg);
 void	ft_put_error(int error_id);
+void	ft_put_action(size_t time, t_philo *philo, int action);
 
 /************************* table.c *************************/
+int		ft_table_init(t_table *table);
+int		ft_table_mtx_init(t_table *table);
+int		ft_table_mtx_destroy(t_table *table);
+void	ft_table_destroy_them_all(t_table *table);
+
 /************************* forks.c *************************/
 int		ft_forks_create(t_table *table);
 int		ft_forks_init(t_table *table);
-int		t_forks_destroy(t_table *table, int size);
+int		ft_forks_destroy(t_table *table, int size);
 void	ft_forks_up(t_philo *philo);
 void	ft_forks_down(t_philo *philo);
 
 /************************* philos.c *************************/
 int		ft_philos_create(t_table *table);
-int		ft_philos_join(t_table *table);
 void	ft_philos_init(t_table *table);
+int		ft_philos_join(t_table *table);
+int		ft_philos_mtx_init(t_table *table);
+int		ft_philos_mtx_destroy(t_table *table);
+
+/************************* mtx_get_{1}{2}.c *************************/
+int		ft_mtx_get_n_philosophers(t_table *table);
+int		ft_mtx_get_time_to_die(t_table *table);
+int		ft_mtx_get_time_to_eat(t_table *table);
+int		ft_mtx_get_time_to_sleep(t_table *table);
+int		ft_mtx_get_max_meals(t_table *table);
+int		ft_mtx_get_start(t_table *table);
+int		ft_mtx_get_stop(t_table *table);
+size_t	ft_mtx_get_time_start(t_table *table);
+int		ft_mtx_get_eat_n_meals(t_philo *philo);
+size_t	ft_mtx_get_time_last_meal(t_philo *philo);
+
+/************************* mtx_set.c *************************/
+void	ft_mtx_set_stop(t_table *table);
+void	ft_mtx_set_start(t_table *table);
+void	ft_mtx_set_time_last_meal(t_philo *philo);
+void	ft_mtx_set_eat_n_meals(t_philo *philo);
+
+/************************* mtx_tools.c *************************/
+int		ft_mtx_lock(t_table *table, pthread_mutex_t *mtx_ptr);
+int		ft_mtx_unlock(t_table *table, pthread_mutex_t *mtx_ptr);
+
+/************************* routine.c *************************/
+int		ft_simulation(t_table *table);
+
+void					ft_print_data(t_table table);
 #endif
