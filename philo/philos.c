@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 16:09:19 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/05 22:21:23 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:20:06 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	ft_philos_mtx_init(t_table *table)
 	i = 0;
 	while (i < n_philosophers)
 	{
-		if (pthread_mutex_init(&table->philos->mtx_time_last_meal, NULL))
+		if (pthread_mutex_init(&((table->philos)[i]).mtx_time_last_meal, NULL))
 			return (ft_put_error(MUTEX_CREAT_ERROR), FAILED);
-		if (pthread_mutex_init(&table->philos->mtx_eat_n_meals, NULL))
+		if (pthread_mutex_init(&((table->philos)[i]).mtx_eat_n_meals, NULL))
 			return (ft_put_error(MUTEX_CREAT_ERROR), FAILED);
 		i++;
 	}
