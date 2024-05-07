@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:37:09 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 15:10:31 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:37:02 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	main(int ac, char **av)
 	if (ft_table_init(&table))
 		return (FAILED);
 	ft_simulation(&table);
+	ft_table_destroy_them_all(&table);
 	return (0);
 }

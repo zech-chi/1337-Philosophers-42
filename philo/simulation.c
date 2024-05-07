@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:52:02 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 15:01:20 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:29:28 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	ft_simulation(t_table *table)
 			return (FAILED);
 		}
 	}
+	ft_mtx_set_start(table);
 	if (ft_philos_join(table))
 		return (FAILED);
 	if (ft_monitor_thread_join(table, id_thread_monitor))
