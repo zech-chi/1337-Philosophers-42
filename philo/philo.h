@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:10:22 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 14:56:25 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:46:24 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ int		ft_mtx_lock(t_table *table, pthread_mutex_t *mtx_ptr);
 int		ft_mtx_unlock(t_table *table, pthread_mutex_t *mtx_ptr);
 
 /************************* routine.c *************************/
+void	ft_dead(t_philo *philo);
 void	*ft_routine(void *arg);
 
 /************************* simulation.c *************************/
