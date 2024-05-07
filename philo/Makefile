@@ -4,7 +4,7 @@ RM = rm -f
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g
 
 PTHREAD = -pthread
 
@@ -20,7 +20,9 @@ SRCS =	main.c \
 		table.c \
 		time.c \
 		to_remove.c \
-		routine.c
+		routine.c \
+		simulation.c \
+		monitor.c
 
 OBJS = $(SRCS:.c=.o)
 
