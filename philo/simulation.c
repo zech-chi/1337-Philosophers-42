@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:52:02 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 17:47:56 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:49:23 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ int	ft_simulation(t_table *table)
 	pthread_t	id_thread_monitor;
 	int			i;
 
-	if (ft_monitor_thread_create(table, &id_thread_monitor))
-		return (FAILED);
 	if (ft_mtx_get_n_philosophers(table) == 1)
 		return (ft_one_philo(table));
+	if (ft_monitor_thread_create(table, &id_thread_monitor))
+		return (FAILED);
 	i = -1;
 	while (++i < ft_mtx_get_n_philosophers(table))
 	{

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 16:09:19 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/05 23:20:06 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:05:28 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ int	ft_philos_join(t_table *table)
 int	ft_philos_mtx_init(t_table *table)
 {
 	int	i;
-	int	n_philosophers;
 
-	n_philosophers = ft_mtx_get_n_philosophers(table);
 	i = 0;
-	while (i < n_philosophers)
+	while (i < ft_mtx_get_n_philosophers(table))
 	{
 		if (pthread_mutex_init(&((table->philos)[i]).mtx_time_last_meal, NULL))
 			return (ft_put_error(MUTEX_CREAT_ERROR), FAILED);
@@ -65,15 +63,13 @@ int	ft_philos_mtx_init(t_table *table)
 int	ft_philos_mtx_destroy(t_table *table)
 {
 	int	i;
-	int	n_philosophers;
 
-	n_philosophers = ft_mtx_get_n_philosophers(table);
 	i = 0;
-	while (i < n_philosophers)
+	while (i < ft_mtx_get_n_philosophers(table))
 	{
-		if (pthread_mutex_destroy(&table->philos->mtx_time_last_meal))
+		if (pthread_mutex_destroy(&(table->philos)[i].mtx_time_last_meal))
 			return (ft_put_error(MUTEX_DESTROY_ERROR), FAILED);
-		if (pthread_mutex_destroy(&table->philos->mtx_eat_n_meals))
+		if (pthread_mutex_destroy(&(table->philos)[i].mtx_eat_n_meals))
 			return (ft_put_error(MUTEX_DESTROY_ERROR), FAILED);
 		i++;
 	}
