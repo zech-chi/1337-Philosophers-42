@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:01:46 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 18:00:00 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:28:20 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_table_init(t_table *table)
 	table->philos = NULL;
 	table->mtx_forks = NULL;
 	if (ft_philos_create(table) == FAILED)
-		return (ft_table_destroy_them_all(table), FAILED);
+		return (FAILED);
 	if (ft_forks_create(table) == FAILED)
 		return (ft_table_destroy_them_all(table), FAILED);
 	if (ft_table_mtx_init(table) == FAILED)
