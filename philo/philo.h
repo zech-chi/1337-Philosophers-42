@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:10:22 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 19:31:50 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 22:31:34 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ void	ft_mtx_set_stop(t_table *table);
 void	ft_mtx_set_start(t_table *table);
 void	ft_mtx_set_time_last_meal(t_philo *philo);
 void	ft_mtx_set_eat_n_meals(t_philo *philo);
+void	ft_mtx_set_time_start(t_table *table);
 
 /************************* mtx_tools.c *************************/
 int		ft_mtx_lock(t_table *table, pthread_mutex_t *mtx_ptr);

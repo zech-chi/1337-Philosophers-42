@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:54:05 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 18:12:46 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 22:55:50 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	*ft_monitor_job(void *arg)
 		}
 		if (count_full_philos == ft_mtx_get_n_philosophers(table))
 			break ;
-		usleep(100);
+		usleep(250);
 	}
 	return (NULL);
 }

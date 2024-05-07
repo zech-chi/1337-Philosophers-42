@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 19:56:35 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 17:46:07 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 23:33:44 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	ft_dead(t_philo *philo)
 {
 	if (ft_mtx_get_stop(philo->table))
 		return ;
-	ft_put_action(ft_time_1(philo->table), philo, DIED);
 	ft_mtx_set_stop(philo->table);
+	ft_put_action(ft_time_1(philo->table), philo, DIED);
 }
 
 void	*ft_routine(void *arg)
@@ -54,16 +54,16 @@ void	*ft_routine(void *arg)
 	while (!ft_mtx_get_start(philo->table))
 		usleep(10);
 	if (philo->id_philo % 2)
-		ft_time_sleep_ms(50);
+		ft_time_sleep_ms(ft_mtx_get_time_to_eat(philo->table));
 	while (ft_mtx_get_stop(philo->table) == 0)
 	{
 		ft_forks_up(philo);
 		ft_eat(philo);
 		ft_forks_down(philo);
-		ft_sleep(philo);
-		ft_think(philo);
 		if (ft_mtx_get_eat_n_meals(philo) == ft_mtx_get_max_meals(philo->table))
 			break ;
+		ft_sleep(philo);
+		ft_think(philo);
 	}
 	return (NULL);
 }

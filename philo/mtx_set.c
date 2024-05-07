@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:39:28 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/05 23:17:15 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 22:30:26 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ void	ft_mtx_set_stop(t_table *table)
 		ft_put_error(MUTEX_UNLOCK_ERROR);
 		return ;
 	}
+}
+
+void	ft_mtx_set_time_start(t_table *table)
+{
+	ft_mtx_lock(table, &table->mtx_time_start);
+	table->time_start = ft_time_cur_ms();
+	ft_mtx_unlock(table, &table->mtx_time_start);
 }
 
 void	ft_mtx_set_start(t_table *table)

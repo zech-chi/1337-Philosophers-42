@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:21:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/05 21:48:03 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/07 23:46:54 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_put_action(size_t time, t_philo *philo, int action)
 		printf("%zu %d is sleeping\n", time, philo->id_philo + 1);
 	else if (action == THINK && !ft_mtx_get_stop(philo->table))
 		printf("%zu %d is thinking\n", time, philo->id_philo + 1);
-	else if (action == DIED && !ft_mtx_get_stop(philo->table))
+	else if (action == DIED)
 		printf("%zu %d died\n", time, philo->id_philo + 1);
 	ft_mtx_unlock(philo->table, &philo->table->mtx_put_action);
 }
