@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:24:44 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/08 15:25:48 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/08 23:20:47 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,14 @@ void	ft_put_error(int error_id)
 		ft_put_on_stderr("Error: failed to create thread\n");
 	else if (error_id == JOIN_THREAD_ERROR)
 		ft_put_on_stderr("Error: failed to join thread\n");
+	else if (error_id == SEM_OPEN_ERROR)
+		ft_put_on_stderr("Error: failed to open sem\n");
+	else if (error_id == SEM_CLOSE_ERROR)
+		ft_put_on_stderr("Error: failed to close sem\n");
+	else if (error_id == SEM_POST_ERRPR)
+		ft_put_on_stderr("Error: failed to post sem\n");
+	else if (error_id == SEM_WAIT_ERROR)
+		ft_put_on_stderr("Error: failed to wait sem\n");
+	else if (error_id == SEM_UNLINK_ERROR)
+		ft_put_on_stderr("Error: failed to unlink sem\n");
 }

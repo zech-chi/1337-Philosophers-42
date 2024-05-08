@@ -10,14 +10,14 @@ PTHREAD = -pthread
 
 SRCS =	main.c \
 		parsing.c \
-		tools.c
-		#forks.c \
+		tools.c \
+		table.c \
+		philos.c \
+		forks.c
 		#mtx_get_1.c \
 		#mtx_get_2.c \
 		#mtx_set.c \
 		#mtx_tools.c \
-		#philos.c \
-		#table.c \
 		#time.c \
 		#routine.c \
 		#simulation.c \
