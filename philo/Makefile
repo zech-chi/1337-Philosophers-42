@@ -3,8 +3,8 @@ NAME = philo
 RM = rm -f
 
 CC = cc
-
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g
+#-fsanitize=thread -g
+CFLAGS = -Wall -Wextra -Werror
 
 PTHREAD = -pthread
 
@@ -19,7 +19,6 @@ SRCS =	main.c \
 		philos.c \
 		table.c \
 		time.c \
-		to_remove.c \
 		routine.c \
 		simulation.c \
 		monitor.c

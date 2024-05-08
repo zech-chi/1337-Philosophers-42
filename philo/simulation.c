@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:52:02 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 23:46:29 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:12:38 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_one_philo_routine(void *arg)
 {
-	t_philo *philo;
+	t_philo			*philo;
 	pthread_mutex_t	*left_fork;
 
 	philo = (t_philo *)arg;
@@ -32,7 +32,8 @@ int	ft_one_philo(t_table *table)
 	pthread_t	*id_thread_philo;
 
 	id_thread_philo = &(table->philos)[0].id_thread;
-	if (pthread_create(id_thread_philo, NULL, ft_one_philo_routine, &(table->philos)[0]))
+	if (pthread_create(id_thread_philo, NULL, \
+	ft_one_philo_routine, &(table->philos)[0]))
 	{
 		ft_put_error(CREAT_THREAD_ERROR);
 		ft_mtx_set_stop(table);
@@ -61,11 +62,11 @@ int	ft_simulation(t_table *table)
 	while (++i < ft_mtx_get_n_philosophers(table))
 	{
 		id_thread_philo = &(table->philos)[i].id_thread;
-		if (pthread_create(id_thread_philo, NULL, ft_routine, &(table->philos)[i]))
+		if (pthread_create(id_thread_philo, NULL, \
+		ft_routine, &(table->philos)[i]))
 		{
 			ft_put_error(CREAT_THREAD_ERROR);
-			ft_mtx_set_stop(table);
-			return (FAILED);
+			return (ft_mtx_set_stop(table), FAILED);
 		}
 	}
 	ft_mtx_set_start(table);
