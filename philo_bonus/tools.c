@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:24:44 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/08 23:20:47 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:37:41 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,18 @@ void	ft_put_error(int error_id)
 		ft_put_on_stderr("Error: failed to wait sem\n");
 	else if (error_id == SEM_UNLINK_ERROR)
 		ft_put_on_stderr("Error: failed to unlink sem\n");
+}
+
+void	ft_put_action(size_t time, t_philo *philo, int action)
+{
+	if (action == TAKE_FORK)
+		printf("%zu %d has taken a fork\n", time, philo->id_philo + 1);
+	else if (action == EAT)
+		printf("%zu %d is eating\n", time, philo->id_philo + 1);
+	else if (action == SLEEP)
+		printf("%zu %d is sleeping\n", time, philo->id_philo + 1);
+	else if (action == THINK)
+		printf("%zu %d is thinking\n", time, philo->id_philo + 1);
+	else if (action == DIED)
+		printf("%zu %d died\n", time, philo->id_philo + 1);
 }

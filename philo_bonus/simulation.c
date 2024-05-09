@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 23:36:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/08 23:45:39 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:24:00 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	ft_simulation(t_table *table)
 {
 	int	i;
 	int	pid;
+	int	exit_status;
 
+	exit_status = 0;
 	i = -1;
 	while (++i < table->n_philosophers)
 	{
@@ -28,7 +30,7 @@ int	ft_simulation(t_table *table)
 		else if (pid == 0)
 		{
 			//child
-			ft_philo();
+			ft_philo(table, i);
 		}
 		else
 		//parent
@@ -36,5 +38,10 @@ int	ft_simulation(t_table *table)
 	}
 	i = -1;
 	while (++i < table->n_philosophers)
-		waitpid(table->philos_pid[i], NULL, 0);
+	{
+		waitpid(table->philos_pid[i], &exit_status, 0);
+		//if (exit_status)
+		//	kill them all
+	}
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/08 23:39:13 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:39:15 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@
 # define SEM_UNLINK_ERROR -9
 
 typedef struct s_table	t_table;
+typedef struct s_philo	t_philo;
+
+/************************* philo struct *************************/
+struct s_philo
+{
+	int		id_philo;
+	int		eat_n_meals;
+	size_t	time_last_meal;
+	t_table	*table;
+};
+
 
 /************************* table struct *************************/
 struct s_table
@@ -64,6 +75,7 @@ int		ft_parsing(t_table *table, int ac, char **av);
 /************************* tools.c *************************/
 void	ft_put_on_stderr(char *msg);
 void	ft_put_error(int error_id);
+void	ft_put_action(size_t time, t_philo *philo, int action);
 
 /************************* table.c *************************/
 int	ft_table_init(t_table *table);
