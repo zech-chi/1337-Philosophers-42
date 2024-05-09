@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks.c                                            :+:      :+:    :+:   */
+/*   sem_tools_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 23:07:43 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/08 23:29:07 by zech-chi         ###   ########.fr       */
+/*   Created: 2024/05/09 11:59:11 by zech-chi          #+#    #+#             */
+/*   Updated: 2024/05/09 12:35:58 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-int	ft_forks_create(t_table *table)
+sem_t	*ft_sem_open(char *file_name, int counter, int *error)
 {
-	int	n;
+	sem_t	*s;
 
-	n = table->n_philosophers;
-	table->sem_forks = sem_open("/tmp/.forks_sem", O_CREAT, 0644, n);
-	if (!table->sem_forks)
+	s = sem_open(file_name, O_CREAT, 0644, counter);
+	if (s == SEM_FAILED)
 	{
 		ft_put_error(SEM_OPEN_ERROR);
-		return (FAILED);
+		*error = 1;
 	}
-	return (SUCCESS);
+	return (s);
 }
-

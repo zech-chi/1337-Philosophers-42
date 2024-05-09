@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/09 10:39:15 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:21:38 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <unistd.h>
 # include <stdio.h>
@@ -20,6 +20,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <semaphore.h>
+# include <signal.h>
 
 //exit status
 # define SUCCESS 0
@@ -31,6 +32,10 @@
 # define SLEEP 4
 # define THINK 5
 # define DIED 6
+
+//sem_files
+# define SEM_FORKS_FILE "forks_sem"
+# define SEM_PUT_ACTION_FILE "put_action_sem"
 
 //error_id
 # define PARSING_ERROR -1
@@ -55,7 +60,6 @@ struct s_philo
 	t_table	*table;
 };
 
-
 /************************* table struct *************************/
 struct s_table
 {
@@ -67,24 +71,46 @@ struct s_table
 	size_t	time_start;
 	pid_t	*philos_pid;
 	sem_t	*sem_forks;
+	sem_t	*sem_put_action;
 };
 
-/************************* parsing.c *************************/
+/************************* parsing_bonus.c *************************/
 int		ft_parsing(t_table *table, int ac, char **av);
 
-/************************* tools.c *************************/
+/************************* tools_bonus.c *************************/
 void	ft_put_on_stderr(char *msg);
 void	ft_put_error(int error_id);
-void	ft_put_action(size_t time, t_philo *philo, int action);
+int		ft_put_action(size_t time, t_philo *philo, int action);
 
-/************************* table.c *************************/
-int	ft_table_init(t_table *table);
-int	ft_table_destroy_them_all(t_table *table);
+/************************* time_bonus.c *************************/
+size_t	ft_time_cur_ms(void);
+void	ft_time_sleep_ms(size_t t_ms);
+size_t	ft_time_1(t_table *table);
+size_t	ft_time_2(t_philo *philo);
 
-/************************* forks.c *************************/
-int	ft_forks_create(t_table *table);
+/************************* table_bonus.c *************************/
+int		ft_table_init(t_table *table);
+int		ft_table_destroy_them_all(t_table *table);
+void	ft_kill_them_all(t_table *table);
 
-/************************* philos.c *************************/
-int	ft_philos_create(t_table *table);
+/************************* forks_bonus.c *************************/
+int		ft_forks_up(t_philo *philo);
+int		ft_forks_down(t_philo *philo);
+
+/************************* philos_bonus.c *************************/
+int		ft_philos_create(t_table *table);
+
+/************************* simulation.c *************************/
+int		ft_simulation(t_table *table);
+
+/************************* routine_bonus.c *************************/
+int		ft_dead(t_philo *philo);
+void	ft_philo(t_table *table, int id_philo);
+
+/************************* sem_tools_bonus.c *************************/
+sem_t	*ft_sem_open(char *file_name, int counter, int *error);
+
+/************************* observer_bonus.c *************************/
+int	ft_observer(t_philo *philo);
 
 #endif

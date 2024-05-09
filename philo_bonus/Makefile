@@ -8,26 +8,23 @@ CFLAGS = -Wall -Wextra -Werror
 
 PTHREAD = -pthread
 
-SRCS =	main.c \
-		parsing.c \
-		tools.c \
-		table.c \
-		philos.c \
-		forks.c
-		#mtx_get_1.c \
-		#mtx_get_2.c \
-		#mtx_set.c \
-		#mtx_tools.c \
-		#time.c \
-		#routine.c \
-		#simulation.c \
-		#monitor.c
+SRCS =	main_bonus.c \
+		parsing_bonus.c \
+		tools_bonus.c \
+		table_bonus.c \
+		philos_bonus.c \
+		forks_bonus.c \
+		time_bonus.c \
+		simulation_bonus.c \
+		routine_bonus.c \
+		sem_tools_bonus.c \
+		observer_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-%.o: %.c philo.h
+%.o: %.c philo_bonus.h
 	$(CC) $(CFLAGS) $(PTHREAD) -c $< -o $@
 
 $(NAME): $(OBJS)
