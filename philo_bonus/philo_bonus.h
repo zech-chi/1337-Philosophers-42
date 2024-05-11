@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 15:54:06 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:35:30 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 //error_id
 # define PARSING_ERROR -1
 # define MALLOC_ERROR -2
-# define CREAT_THREAD_ERROR -3
-# define JOIN_THREAD_ERROR -4
+# define THREAD_CREATE_ERROR -3
+# define THREAD_DETACH_ERROR -4
 # define SEM_OPEN_ERROR -5
 # define SEM_CLOSE_ERROR -6
 # define SEM_POST_ERRPR -7
@@ -121,6 +121,6 @@ size_t	ft_sem_get_time_last_meal(t_philo *philo);
 void	ft_sem_set_time_last_meal(t_philo *philo);
 
 /************************* observer_bonus.c *************************/
-int	ft_observer(t_philo *philo);
+int		ft_observer(t_philo *philo);
 
 #endif

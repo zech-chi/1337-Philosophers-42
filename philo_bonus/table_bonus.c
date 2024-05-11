@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:55:57 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 15:07:13 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:42:15 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static int	ft_table_sem_init(t_table *table)
 	sem_unlink(SEM_TIME_START_FILE);
 	sem_unlink(SEM_EAT_N_MEALS_FILE);
 	sem_unlink(SEM_TIME_LAST_MEAL_FILE);
-	table->sem_forks = ft_sem_open(SEM_FORKS_FILE, table->n_philosophers, &error);
+	table->sem_forks = ft_sem_open(SEM_FORKS_FILE, \
+	table->n_philosophers, &error);
 	table->sem_put_action = ft_sem_open(SEM_PUT_ACTION_FILE, 1, &error);
 	table->sem_time_start = ft_sem_open(SEM_TIME_START_FILE, 1, &error);
 	table->sem_eat_n_meals = ft_sem_open(SEM_EAT_N_MEALS_FILE, 1, &error);

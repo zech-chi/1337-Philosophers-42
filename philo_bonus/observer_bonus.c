@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:01:43 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 15:40:37 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:35:03 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	ft_observer(t_philo *philo)
 
 	if (pthread_create(&id_thread_observer, NULL, &ft_observer_job, philo))
 	{
-		ft_put_error(CREAT_THREAD_ERROR);
+		ft_put_error(THREAD_CREATE_ERROR);
 		return (FAILED);
 	}
 	if (pthread_detach(id_thread_observer))
 	{
-		//ft_put_error()
+		ft_put_error(THREAD_DETACH_ERROR);
 		return (FAILED);
 	}
 	return (SUCCESS);

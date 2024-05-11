@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:24:44 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/09 15:55:19 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:39:26 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	ft_put_error(int error_id)
 		ft_put_on_stderr("Error: invalid arguments\n");
 	else if (error_id == MALLOC_ERROR)
 		ft_put_on_stderr("Error: failed to allocate memory\n");
-	else if (error_id == CREAT_THREAD_ERROR)
+	else if (error_id == THREAD_CREATE_ERROR)
 		ft_put_on_stderr("Error: failed to create thread\n");
-	else if (error_id == JOIN_THREAD_ERROR)
+	else if (error_id == THREAD_DETACH_ERROR)
 		ft_put_on_stderr("Error: failed to join thread\n");
 	else if (error_id == SEM_OPEN_ERROR)
 		ft_put_on_stderr("Error: failed to open sem\n");
