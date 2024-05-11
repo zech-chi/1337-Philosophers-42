@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:01:43 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/09 15:54:52 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:40:37 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	*ft_observer_job(void *arg)
 	{
 		if (ft_time_2(philo) > (size_t)philo->table->time_to_die)
 			return (ft_dead(philo), kill(getpid(), SIGINT), NULL);
-		usleep(250);
+		usleep(5000);
 	}
 	return (NULL);
 }

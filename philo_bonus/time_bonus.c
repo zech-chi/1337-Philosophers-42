@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:39:36 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 15:22:58 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:57:59 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_time_sleep_ms(size_t t_ms)
 
 	t0 = ft_time_cur_ms();
 	while (ft_time_cur_ms() - t0 < t_ms)
-		usleep(100);
+		usleep(250);
 }
 
 size_t	ft_time_1(t_table *table)

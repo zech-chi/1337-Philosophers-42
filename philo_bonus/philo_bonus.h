@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 15:11:06 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:54:06 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int		ft_simulation(t_table *table);
 
 /************************* routine_bonus.c *************************/
 int		ft_dead(t_philo *philo);
-void	ft_philo(t_table *table, int id_philo);
+void	ft_philo(t_table *table, int id_philo, size_t time_start);
 
 /************************* sem_tools_bonus.c *************************/
 sem_t	*ft_sem_open(char *file_name, int counter, int *error);

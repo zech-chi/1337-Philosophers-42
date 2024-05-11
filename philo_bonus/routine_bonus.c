@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 23:44:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 15:17:32 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:53:49 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int	ft_dead(t_philo *philo)
 	return (SUCCESS);
 }
 
-void	ft_philo(t_table *table, int id_philo)
+void	ft_philo(t_table *table, int id_philo, size_t time_start)
 {
 	t_philo	philo;
 
 	philo.id_philo = id_philo;
 	philo.table = table;
-	philo.time_last_meal = ft_time_cur_ms();
+	philo.time_last_meal = time_start;
 	ft_observer(&philo);
 	if (id_philo % 2)
 		ft_time_sleep_ms(table->time_to_eat);
