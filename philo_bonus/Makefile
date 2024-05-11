@@ -3,8 +3,8 @@ NAME = philo_bonus
 RM = rm -f
 
 CC = cc
-#-fsanitize=thread -g
-CFLAGS = -Wall -Wextra -Werror
+
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g
 
 PTHREAD = -pthread
 

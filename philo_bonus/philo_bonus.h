@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/09 15:21:38 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 12:30:49 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 //sem_files
 # define SEM_FORKS_FILE "forks_sem"
 # define SEM_PUT_ACTION_FILE "put_action_sem"
+# define SEM_EAT_N_MEALS_FILE "eat_n_meals_sem"
+# define SEM_TIME_LAST_MEAL_FILE "time_last_meal_sem"
 
 //error_id
 # define PARSING_ERROR -1
@@ -72,6 +74,8 @@ struct s_table
 	pid_t	*philos_pid;
 	sem_t	*sem_forks;
 	sem_t	*sem_put_action;
+	sem_t	*sem_eat_n_meals;
+	sem_t	*sem_time_last_meal;
 };
 
 /************************* parsing_bonus.c *************************/
