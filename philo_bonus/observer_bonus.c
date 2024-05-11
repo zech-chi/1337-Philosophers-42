@@ -6,12 +6,13 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:01:43 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 19:35:03 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:14:08 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
+//return (ft_dead(philo), kill(getpid(), SIGINT), NULL);
 static void	*ft_observer_job(void *arg)
 {
 	t_philo	*philo;
@@ -20,7 +21,7 @@ static void	*ft_observer_job(void *arg)
 	while (1)
 	{
 		if (ft_time_2(philo) > (size_t)philo->table->time_to_die)
-			return (ft_dead(philo), kill(getpid(), SIGINT), NULL);
+			return (ft_dead(philo), exit(FAILED), NULL);
 		usleep(5000);
 	}
 	return (NULL);

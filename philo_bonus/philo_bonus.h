@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 19:35:30 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:48:03 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define SEM_POST_ERRPR -7
 # define SEM_WAIT_ERROR -8
 # define SEM_UNLINK_ERROR -9
+# define FORK_ERROR -10
 
 typedef struct s_table	t_table;
 typedef struct s_philo	t_philo;

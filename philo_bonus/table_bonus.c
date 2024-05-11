@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:55:57 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 19:42:15 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:21:48 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_table_init(t_table *table)
 		return (FAILED);
 	if (ft_table_sem_init(table) == FAILED)
 		return (ft_table_destroy_them_all(table), FAILED);
-	table->time_start = ft_time_cur_ms();
+	//table->time_start = ft_time_cur_ms();
 	return (SUCCESS);
 }
 
@@ -50,11 +50,16 @@ int	ft_table_destroy_them_all(t_table *table)
 
 	err = 0;
 	err = err - sem_close(table->sem_forks);
+	err = err - sem_close(table->sem_eat_n_meals);
+	err = err - sem_close(table->sem_put_action);
+	err = err - sem_close(table->sem_time_last_meal);
+	err = err - sem_close(table->sem_time_start);
 	err = err - sem_unlink(SEM_FORKS_FILE);
 	err = err - sem_unlink(SEM_PUT_ACTION_FILE);
 	err = err - sem_unlink(SEM_TIME_START_FILE);
 	err = err - sem_unlink(SEM_EAT_N_MEALS_FILE);
 	err = err - sem_unlink(SEM_TIME_LAST_MEAL_FILE);
+	ft_kill_them_all(table);
 	free(table->philos_pid);
 	if (err)
 		return (FAILED);
