@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:39:36 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 12:29:17 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:22:58 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,17 @@ void	ft_time_sleep_ms(size_t t_ms)
 
 	t0 = ft_time_cur_ms();
 	while (ft_time_cur_ms() - t0 < t_ms)
-		usleep(250);
+		usleep(100);
 }
 
 size_t	ft_time_1(t_table *table)
 {
-	return (ft_time_cur_ms() - table->time_start); // to lock
+	//return (ft_time_cur_ms() - table->time_start); // to lock
+	return (ft_time_cur_ms() - ft_sem_get_time_start(table));
 }
 
 size_t	ft_time_2(t_philo *philo)
 {
-	return (ft_time_cur_ms() - philo->time_last_meal); // to lock
+	//return (ft_time_cur_ms() - philo->time_last_meal); // to lock
+	return (ft_time_cur_ms() - ft_sem_get_time_last_meal(philo)); // to lock
 }

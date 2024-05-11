@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 12:30:49 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:11:06 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 //sem_files
 # define SEM_FORKS_FILE "forks_sem"
 # define SEM_PUT_ACTION_FILE "put_action_sem"
+# define SEM_TIME_START_FILE "time_start_sem"
 # define SEM_EAT_N_MEALS_FILE "eat_n_meals_sem"
 # define SEM_TIME_LAST_MEAL_FILE "time_last_meal_sem"
 
@@ -74,6 +75,7 @@ struct s_table
 	pid_t	*philos_pid;
 	sem_t	*sem_forks;
 	sem_t	*sem_put_action;
+	sem_t	*sem_time_start;
 	sem_t	*sem_eat_n_meals;
 	sem_t	*sem_time_last_meal;
 };
@@ -113,6 +115,10 @@ void	ft_philo(t_table *table, int id_philo);
 
 /************************* sem_tools_bonus.c *************************/
 sem_t	*ft_sem_open(char *file_name, int counter, int *error);
+//int		ft_sem_get_eat_n_meals(t_philo *philo);
+size_t	ft_sem_get_time_start(t_table *table);
+size_t	ft_sem_get_time_last_meal(t_philo *philo);
+void	ft_sem_set_time_last_meal(t_philo *philo);
 
 /************************* observer_bonus.c *************************/
 int	ft_observer(t_philo *philo);
