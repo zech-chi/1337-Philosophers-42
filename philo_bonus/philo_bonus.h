@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 19:48:03 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/17 21:23:03 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ struct s_philo
 	int		eat_n_meals;
 	size_t	time_last_meal;
 	t_table	*table;
+	sem_t	*sem_eat_n_meals;
+	sem_t	*sem_time_last_meal;
+	sem_t	*sem_time_start;
 };
 
 /************************* table struct *************************/
@@ -76,9 +79,6 @@ struct s_table
 	pid_t	*philos_pid;
 	sem_t	*sem_forks;
 	sem_t	*sem_put_action;
-	sem_t	*sem_time_start;
-	sem_t	*sem_eat_n_meals;
-	sem_t	*sem_time_last_meal;
 };
 
 /************************* parsing_bonus.c *************************/
@@ -92,7 +92,7 @@ int		ft_put_action(size_t time, t_philo *philo, int action);
 /************************* time_bonus.c *************************/
 size_t	ft_time_cur_ms(void);
 void	ft_time_sleep_ms(size_t t_ms);
-size_t	ft_time_1(t_table *table);
+size_t	ft_time_1(t_philo *philo, size_t cur_time);
 size_t	ft_time_2(t_philo *philo);
 
 /************************* table_bonus.c *************************/
@@ -106,20 +106,22 @@ int		ft_forks_down(t_philo *philo);
 
 /************************* philos_bonus.c *************************/
 int		ft_philos_create(t_table *table);
+int		ft_philo_init(t_table *table, t_philo *philo, int id_philo);
 
 /************************* simulation.c *************************/
 int		ft_simulation(t_table *table);
 
 /************************* routine_bonus.c *************************/
 int		ft_dead(t_philo *philo);
-void	ft_philo(t_table *table, int id_philo, size_t time_start);
+void	ft_philo(t_table *table, int id_philo);
 
 /************************* sem_tools_bonus.c *************************/
 sem_t	*ft_sem_open(char *file_name, int counter, int *error);
 //int		ft_sem_get_eat_n_meals(t_philo *philo);
-size_t	ft_sem_get_time_start(t_table *table);
+size_t	ft_sem_get_time_start(t_philo *philo);
 size_t	ft_sem_get_time_last_meal(t_philo *philo);
-void	ft_sem_set_time_last_meal(t_philo *philo);
+void	ft_sem_set_time_last_meal(t_philo *philo, size_t cur_time);
+//void	ft_sem_set_time_last_meal(t_philo *philo);
 
 /************************* observer_bonus.c *************************/
 int		ft_observer(t_philo *philo);

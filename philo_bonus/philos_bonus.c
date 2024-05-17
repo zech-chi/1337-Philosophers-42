@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 23:01:23 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/09 11:31:52 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/17 21:16:21 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,27 @@ int	ft_philos_create(t_table *table)
 		ft_put_error(MALLOC_ERROR);
 		return (FAILED);
 	}
+	return (SUCCESS);
+}
+
+int	ft_philo_init(t_table *table, t_philo *philo, int id_philo)
+{
+	int		error;
+
+	error = 0;
+	free(table->philos_pid);
+	table->philos_pid = NULL;
+	sem_unlink(SEM_TIME_START_FILE);
+	sem_unlink(SEM_EAT_N_MEALS_FILE);
+	sem_unlink(SEM_TIME_LAST_MEAL_FILE);
+	philo->sem_time_start = ft_sem_open(SEM_TIME_START_FILE, 1, &error);
+	philo->sem_eat_n_meals = ft_sem_open(SEM_EAT_N_MEALS_FILE, 1, &error);
+	philo->sem_time_last_meal = ft_sem_open(SEM_TIME_LAST_MEAL_FILE, 1, &error);
+	philo->id_philo = id_philo;
+	philo->table = table;
+	philo->time_last_meal = table->time_start;
+	philo->eat_n_meals = 0;
+	if (error)
+		return (FAILED);
 	return (SUCCESS);
 }

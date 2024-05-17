@@ -6,16 +6,22 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:11 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/09 16:05:00 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/17 21:22:54 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
+void	f(void)
+{
+	system("leaks philo_bonus");
+}
+
 int	main(int ac, char **av)
 {
 	t_table	table;
 
+	atexit(f);
 	memset(&table, 0, sizeof(t_table));
 	if (ft_parsing(&table, ac, av))
 		return (FAILED);

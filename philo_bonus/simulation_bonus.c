@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 23:36:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 19:51:03 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/17 20:58:24 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ int	ft_simulation(t_table *table)
 	int		i;
 	int		pid;
 	int		exit_status;
-	size_t	time_start;
 
 	table->time_start = ft_time_cur_ms();
-	time_start = table->time_start;
 	exit_status = 0;
 	i = -1;
 	while (++i < table->n_philosophers)
@@ -29,7 +27,7 @@ int	ft_simulation(t_table *table)
 		if (pid < 0)
 			return (ft_put_error(FORK_ERROR), FAILED);
 		else if (pid == 0)
-			ft_philo(table, i, time_start);
+			ft_philo(table, i);
 		table->philos_pid[i] = pid;
 	}
 	i = -1;
