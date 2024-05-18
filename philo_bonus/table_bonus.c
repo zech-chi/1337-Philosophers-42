@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:55:57 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/17 21:16:35 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/18 23:54:02 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,15 @@ static int	ft_table_sem_init(t_table *table)
 	error = 0;
 	sem_unlink(SEM_FORKS_FILE);
 	sem_unlink(SEM_PUT_ACTION_FILE);
+	sem_unlink(SEM_TIME_START_FILE);
+	sem_unlink(SEM_EAT_N_MEALS_FILE);
+	sem_unlink(SEM_TIME_LAST_MEAL_FILE);
 	table->sem_forks = ft_sem_open(SEM_FORKS_FILE, \
 	table->n_philosophers, &error);
 	table->sem_put_action = ft_sem_open(SEM_PUT_ACTION_FILE, 1, &error);
+	table->sem_time_start = ft_sem_open(SEM_TIME_START_FILE, 1, &error);
+	table->sem_eat_n_meals = ft_sem_open(SEM_EAT_N_MEALS_FILE, 1, &error);
+	table->sem_time_last_meal = ft_sem_open(SEM_TIME_LAST_MEAL_FILE, 1, &error);
 	if (error)
 		return (FAILED);
 	return (SUCCESS);
@@ -43,9 +49,15 @@ int	ft_table_destroy_them_all(t_table *table)
 
 	err = 0;
 	err = err - sem_close(table->sem_forks);
+	err = err - sem_close(table->sem_eat_n_meals);
 	err = err - sem_close(table->sem_put_action);
+	err = err - sem_close(table->sem_time_last_meal);
+	err = err - sem_close(table->sem_time_start);
 	err = err - sem_unlink(SEM_FORKS_FILE);
 	err = err - sem_unlink(SEM_PUT_ACTION_FILE);
+	err = err - sem_unlink(SEM_TIME_START_FILE);
+	err = err - sem_unlink(SEM_EAT_N_MEALS_FILE);
+	err = err - sem_unlink(SEM_TIME_LAST_MEAL_FILE);
 	ft_kill_them_all(table);
 	free(table->philos_pid);
 	table->philos_pid = NULL;
