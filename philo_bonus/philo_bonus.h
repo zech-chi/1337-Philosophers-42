@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/17 21:23:03 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/18 23:18:45 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int		ft_forks_down(t_philo *philo);
 /************************* philos_bonus.c *************************/
 int		ft_philos_create(t_table *table);
 int		ft_philo_init(t_table *table, t_philo *philo, int id_philo);
+int		ft_philo_destroy(t_philo *philo);
 
 /************************* simulation.c *************************/
 int		ft_simulation(t_table *table);

@@ -6,13 +6,12 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:10:22 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/08 16:42:44 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/18 23:20:41 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
-
 
 # include <unistd.h>
 # include <stdio.h>
@@ -20,7 +19,6 @@
 # include <string.h>
 # include <pthread.h>
 # include <sys/time.h>
-
 
 //exit status
 # define SUCCESS 0

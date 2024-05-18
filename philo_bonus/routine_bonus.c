@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 23:44:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/17 21:04:17 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/18 23:17:31 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,23 @@ void	ft_philo(t_table *table, int id_philo)
 	t_philo	philo;
 
 	if (ft_philo_init(table, &philo, id_philo))
-		exit(FAILED);
+		return (ft_philo_destroy(&philo), exit(FAILED));
 	ft_observer(&philo);
 	if (id_philo % 2)
 		ft_time_sleep_ms(table->time_to_eat / 2);
 	while (1)
 	{
 		if (ft_forks_up(&philo) == FAILED)
-			exit(FAILED);
+			return (ft_philo_destroy(&philo), exit(FAILED));
 		if (ft_eat(&philo))
-			exit(FAILED);
+			return (ft_philo_destroy(&philo), exit(FAILED));
 		if (ft_forks_down(&philo) == FAILED)
-			exit(FAILED);
+			return (ft_philo_destroy(&philo), exit(FAILED));
 		if (philo.eat_n_meals == table->max_meals)
-			exit(SUCCESS);
+			return (ft_philo_destroy(&philo), exit(SUCCESS));
 		if (ft_sleep(&philo))
-			exit(FAILED);
+			return (ft_philo_destroy(&philo), exit(FAILED));
 		if (ft_think(&philo))
-			exit(FAILED);
+			return (ft_philo_destroy(&philo), exit(FAILED));
 	}
 }
