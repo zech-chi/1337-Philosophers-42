@@ -6,13 +6,12 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:01:43 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/18 23:56:19 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/19 00:26:48 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-//return (ft_dead(philo), kill(getpid(), SIGINT), NULL);
 static void	*ft_observer_job(void *arg)
 {
 	t_philo	*philo;

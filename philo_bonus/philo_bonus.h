@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/18 23:57:29 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/19 00:29:53 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,9 @@ void	ft_philo(t_table *table, int id_philo);
 
 /************************* sem_tools_bonus.c *************************/
 sem_t	*ft_sem_open(char *file_name, int counter, int *error);
-//int		ft_sem_get_eat_n_meals(t_philo *philo);
 size_t	ft_sem_get_time_start(t_philo *philo);
 size_t	ft_sem_get_time_last_meal(t_philo *philo);
 void	ft_sem_set_time_last_meal(t_philo *philo, size_t cur_time);
-//void	ft_sem_set_time_last_meal(t_philo *philo);
 
 /************************* observer_bonus.c *************************/
 int		ft_observer(t_philo *philo);
