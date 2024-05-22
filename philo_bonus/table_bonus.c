@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:55:57 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/18 23:54:02 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:40:00 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,21 @@ int	ft_table_init(t_table *table)
 	return (SUCCESS);
 }
 
-int	ft_table_destroy_them_all(t_table *table)
+void	ft_table_destroy_them_all(t_table *table)
 {
-	int	err;
-
-	err = 0;
-	err = err - sem_close(table->sem_forks);
-	err = err - sem_close(table->sem_eat_n_meals);
-	err = err - sem_close(table->sem_put_action);
-	err = err - sem_close(table->sem_time_last_meal);
-	err = err - sem_close(table->sem_time_start);
-	err = err - sem_unlink(SEM_FORKS_FILE);
-	err = err - sem_unlink(SEM_PUT_ACTION_FILE);
-	err = err - sem_unlink(SEM_TIME_START_FILE);
-	err = err - sem_unlink(SEM_EAT_N_MEALS_FILE);
-	err = err - sem_unlink(SEM_TIME_LAST_MEAL_FILE);
+	sem_close(table->sem_forks);
+	sem_close(table->sem_eat_n_meals);
+	sem_close(table->sem_put_action);
+	sem_close(table->sem_time_last_meal);
+	sem_close(table->sem_time_start);
+	sem_unlink(SEM_FORKS_FILE);
+	sem_unlink(SEM_PUT_ACTION_FILE);
+	sem_unlink(SEM_TIME_START_FILE);
+	sem_unlink(SEM_EAT_N_MEALS_FILE);
+	sem_unlink(SEM_TIME_LAST_MEAL_FILE);
 	ft_kill_them_all(table);
 	free(table->philos_pid);
 	table->philos_pid = NULL;
-	if (err)
-		return (FAILED);
-	return (SUCCESS);
 }
 
 void	ft_kill_them_all(t_table *table)

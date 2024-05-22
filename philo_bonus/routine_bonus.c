@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 23:44:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/19 12:05:03 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:56:09 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_philo(t_table *table, int id_philo)
 		exit(SUCCESS);
 	ft_observer(&philo);
 	if (id_philo % 2)
-		ft_time_sleep_ms(table->time_to_eat);
+		ft_time_sleep_ms(table->time_to_eat - 10);
 	while (1)
 	{
 		if (ft_forks_up(&philo) == FAILED)

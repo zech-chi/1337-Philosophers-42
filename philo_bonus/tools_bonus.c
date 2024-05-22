@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:24:44 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/11 19:39:26 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:35:38 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,12 @@ void	ft_put_error(int error_id)
 		ft_put_on_stderr("Error: invalid arguments\n");
 	else if (error_id == MALLOC_ERROR)
 		ft_put_on_stderr("Error: failed to allocate memory\n");
-	else if (error_id == THREAD_CREATE_ERROR)
-		ft_put_on_stderr("Error: failed to create thread\n");
-	else if (error_id == THREAD_DETACH_ERROR)
-		ft_put_on_stderr("Error: failed to join thread\n");
-	else if (error_id == SEM_OPEN_ERROR)
-		ft_put_on_stderr("Error: failed to open sem\n");
-	else if (error_id == SEM_CLOSE_ERROR)
-		ft_put_on_stderr("Error: failed to close sem\n");
-	else if (error_id == SEM_POST_ERRPR)
-		ft_put_on_stderr("Error: failed to post sem\n");
-	else if (error_id == SEM_WAIT_ERROR)
-		ft_put_on_stderr("Error: failed to wait sem\n");
-	else if (error_id == SEM_UNLINK_ERROR)
-		ft_put_on_stderr("Error: failed to unlink sem\n");
 }
 
 int	ft_put_action(size_t time, t_philo *philo, int action)
 {
 	if (sem_wait(philo->table->sem_put_action) == -1)
-		return (ft_put_error(SEM_WAIT_ERROR), FAILED);
+		return (FAILED);
 	if (action == TAKE_FORK)
 		printf("%zu %d has taken a fork\n", time, philo->id_philo + 1);
 	else if (action == EAT)
@@ -63,6 +49,6 @@ int	ft_put_action(size_t time, t_philo *philo, int action)
 	else if (action == DIED)
 		printf("%zu %d died\n", time, philo->id_philo + 1);
 	if (action != DIED && sem_post(philo->table->sem_put_action) == -1)
-		return (ft_put_error(SEM_POST_ERRPR), FAILED);
+		return (FAILED);
 	return (SUCCESS);
 }

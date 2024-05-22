@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 23:36:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/17 20:58:24 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:38:07 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_simulation(t_table *table)
 	{
 		pid = fork();
 		if (pid < 0)
-			return (ft_put_error(FORK_ERROR), FAILED);
+			return (FAILED);
 		else if (pid == 0)
 			ft_philo(table, i);
 		table->philos_pid[i] = pid;

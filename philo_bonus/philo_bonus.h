@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:10:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/19 00:29:53 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:40:10 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,6 @@
 //error_id
 # define PARSING_ERROR -1
 # define MALLOC_ERROR -2
-# define THREAD_CREATE_ERROR -3
-# define THREAD_DETACH_ERROR -4
-# define SEM_OPEN_ERROR -5
-# define SEM_CLOSE_ERROR -6
-# define SEM_POST_ERRPR -7
-# define SEM_WAIT_ERROR -8
-# define SEM_UNLINK_ERROR -9
-# define FORK_ERROR -10
 
 typedef struct s_table	t_table;
 typedef struct s_philo	t_philo;
@@ -97,7 +89,7 @@ size_t	ft_time_2(t_philo *philo);
 
 /************************* table_bonus.c *************************/
 int		ft_table_init(t_table *table);
-int		ft_table_destroy_them_all(t_table *table);
+void	ft_table_destroy_them_all(t_table *table);
 void	ft_kill_them_all(t_table *table);
 
 /************************* forks_bonus.c *************************/

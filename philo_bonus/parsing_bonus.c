@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:23:45 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/18 23:20:10 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 08:48:00 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,25 @@ static void	ft_print_invalid_args(t_table *table, int ac, char **av)
 	}
 }
 
+static int	ft_check_valid_args(t_table *table)
+{
+	if (table->n_philosophers > 200)
+	{
+		ft_put_error(PARSING_ERROR);
+		ft_put_on_stderr("Do not test with more than 200 philosophers.\n");
+		return (FAILED);
+	}
+	if (table->time_to_die < 60 || table->time_to_eat < 60
+		|| table->time_to_sleep < 60)
+	{
+		ft_put_error(PARSING_ERROR);
+		ft_put_on_stderr("Do not test with time_to_die or time_to_eat ");
+		ft_put_on_stderr("or time_to_sleep set to values lower than 60 ms.\n");
+		return (FAILED);
+	}
+	return (SUCCESS);
+}
+
 int	ft_parsing(t_table *table, int ac, char **av)
 {
 	int	error;
@@ -98,6 +117,7 @@ int	ft_parsing(t_table *table, int ac, char **av)
 	{
 		ft_put_error(PARSING_ERROR);
 		ft_print_invalid_args(table, ac, av);
+		return (FAILED);
 	}
-	return (error);
+	return (ft_check_valid_args(table));
 }
