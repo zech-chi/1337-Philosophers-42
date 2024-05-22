@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 23:44:16 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/19 00:17:33 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/19 12:05:03 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ static int	ft_eat(t_philo *philo)
 	cur_time = ft_time_cur_ms();
 	if (ft_put_action(ft_time_1(philo, cur_time), philo, EAT))
 		return (FAILED);
-	ft_sem_set_time_last_meal(philo, cur_time);
 	(philo->eat_n_meals)++;
+	if (philo->eat_n_meals != philo->table->max_meals)
+		ft_sem_set_time_last_meal(philo, cur_time);
 	ft_time_sleep_ms(philo->table->time_to_eat);
 	return (SUCCESS);
 }
