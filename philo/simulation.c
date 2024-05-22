@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:52:02 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/22 09:12:14 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:42:20 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	*ft_one_philo_routine(void *arg)
 	philo = (t_philo *)arg;
 	left_fork = &(philo->table->mtx_forks)[philo->id_left_fork];
 	if (ft_mtx_lock(philo->table, left_fork) == SUCCESS)
-		ft_put_action(ft_time_1(philo->table), philo, TAKE_FORK);
+		ft_put_action(ft_time_1(philo->table, ft_time_cur_ms()), \
+		philo, TAKE_FORK);
 	ft_mtx_unlock(philo->table, left_fork);
 	ft_time_sleep_ms(ft_mtx_get_time_to_die(philo->table));
 	ft_dead(philo);
@@ -66,7 +67,6 @@ int	ft_simulation(t_table *table)
 			return (ft_mtx_set_stop(table), FAILED);
 		}
 	}
-	ft_mtx_set_start(table);
 	if (ft_philos_detach(table))
 		return (FAILED);
 	if (ft_monitor_thread_join(table, id_thread_monitor))

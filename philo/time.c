@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:59:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 22:49:25 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:57:34 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	ft_time_sleep_ms(size_t t_ms)
 		usleep(250);
 }
 
-size_t	ft_time_1(t_table *table)
+size_t	ft_time_1(t_table *table, size_t cur_time)
 {
-	return (ft_time_cur_ms() - ft_mtx_get_time_start(table));
+	return (cur_time - ft_mtx_get_time_start(table));
 }
 
 size_t	ft_time_2(t_philo *philo)

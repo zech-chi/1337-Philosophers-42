@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:39:28 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/22 09:10:36 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:41:06 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,10 @@ void	ft_mtx_set_stop(t_table *table)
 		return ;
 }
 
-void	ft_mtx_set_time_start(t_table *table)
-{
-	ft_mtx_lock(table, &table->mtx_time_start);
-	table->time_start = ft_time_cur_ms();
-	ft_mtx_unlock(table, &table->mtx_time_start);
-}
-
-void	ft_mtx_set_start(t_table *table)
-{
-	ft_mtx_lock(table, &table->mtx_start);
-	table->start = 1;
-	ft_mtx_unlock(table, &table->mtx_start);
-}
-
-void	ft_mtx_set_time_last_meal(t_philo *philo)
+void	ft_mtx_set_time_last_meal(t_philo *philo, size_t cur_time)
 {
 	ft_mtx_lock(philo->table, &philo->mtx_time_last_meal);
-	philo->time_last_meal = ft_time_cur_ms();
+	philo->time_last_meal = cur_time;
 	ft_mtx_unlock(philo->table, &philo->mtx_time_last_meal);
 }
 

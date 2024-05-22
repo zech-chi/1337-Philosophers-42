@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 16:09:19 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/22 09:11:16 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:31:56 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_philos_init(t_table *table)
 	if (!table->philos)
 		return ;
 	n_philosophers = ft_mtx_get_n_philosophers(table);
-	start_time = ft_time_cur_ms();
+	start_time = table->time_start;
 	i = 0;
 	while (i < n_philosophers)
 	{

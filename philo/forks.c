@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:49:05 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/22 09:10:09 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:41:59 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ void	ft_forks_up(t_philo *philo)
 	left_fork = &(philo->table->mtx_forks)[philo->id_left_fork];
 	right_fork = &(philo->table->mtx_forks)[philo->id_right_fork];
 	if (ft_mtx_lock(philo->table, left_fork) == SUCCESS)
-		ft_put_action(ft_time_1(philo->table), philo, TAKE_FORK);
+		ft_put_action(ft_time_1(philo->table, ft_time_cur_ms()), \
+		philo, TAKE_FORK);
 	if (ft_mtx_lock(philo->table, right_fork) == SUCCESS)
-		ft_put_action(ft_time_1(philo->table), philo, TAKE_FORK);
+		ft_put_action(ft_time_1(philo->table, ft_time_cur_ms()), \
+		philo, TAKE_FORK);
 }
 
 void	ft_forks_down(t_philo *philo)

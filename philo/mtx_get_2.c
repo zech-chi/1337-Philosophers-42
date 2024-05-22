@@ -6,21 +6,11 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:47:47 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/05 18:59:57 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:40:44 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	ft_mtx_get_start(t_table *table)
-{
-	int	start;
-
-	ft_mtx_lock(table, &table->mtx_start);
-	start = table->start;
-	ft_mtx_unlock(table, &table->mtx_start);
-	return (start);
-}
 
 int	ft_mtx_get_stop(t_table *table)
 {

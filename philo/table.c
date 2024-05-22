@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:01:46 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/22 09:23:30 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:31:40 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	ft_table_init(t_table *table)
 		return (ft_table_destroy_them_all(table), FAILED);
 	if (ft_philos_mtx_init(table) == FAILED)
 		return (ft_table_destroy_them_all(table), FAILED);
-	ft_philos_init(table);
 	table->time_start = ft_time_cur_ms();
+	ft_philos_init(table);
 	return (SUCCESS);
 }
 

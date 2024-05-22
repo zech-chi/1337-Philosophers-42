@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:10:22 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/22 09:24:18 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:41:29 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ struct s_table
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				max_meals;
-	int				start;
 	int				stop;
 	size_t			time_start;
 	t_philo			*philos;
@@ -82,7 +81,7 @@ int		ft_parsing(t_table *table, int ac, char **av);
 /************************* time.c *************************/
 size_t	ft_time_cur_ms(void);
 void	ft_time_sleep_ms(size_t t_ms);
-size_t	ft_time_1(t_table *table);
+size_t	ft_time_1(t_table *table, size_t cur_time);
 size_t	ft_time_2(t_philo *philo);
 
 /************************* tools.c *************************/
@@ -116,7 +115,6 @@ int		ft_mtx_get_time_to_die(t_table *table);
 int		ft_mtx_get_time_to_eat(t_table *table);
 int		ft_mtx_get_time_to_sleep(t_table *table);
 int		ft_mtx_get_max_meals(t_table *table);
-int		ft_mtx_get_start(t_table *table);
 int		ft_mtx_get_stop(t_table *table);
 size_t	ft_mtx_get_time_start(t_table *table);
 int		ft_mtx_get_eat_n_meals(t_philo *philo);
@@ -124,10 +122,8 @@ size_t	ft_mtx_get_time_last_meal(t_philo *philo);
 
 /************************* mtx_set.c *************************/
 void	ft_mtx_set_stop(t_table *table);
-void	ft_mtx_set_start(t_table *table);
-void	ft_mtx_set_time_last_meal(t_philo *philo);
+void	ft_mtx_set_time_last_meal(t_philo *philo, size_t cur_time);
 void	ft_mtx_set_eat_n_meals(t_philo *philo);
-void	ft_mtx_set_time_start(t_table *table);
 
 /************************* mtx_tools.c *************************/
 int		ft_mtx_lock(t_table *table, pthread_mutex_t *mtx_ptr);
