@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:49:05 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/22 10:41:59 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:05:55 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	ft_forks_up(t_philo *philo)
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 
+	if (ft_mtx_get_stop(philo->table))
+		return ;
 	left_fork = &(philo->table->mtx_forks)[philo->id_left_fork];
 	right_fork = &(philo->table->mtx_forks)[philo->id_right_fork];
 	if (ft_mtx_lock(philo->table, left_fork) == SUCCESS)
@@ -71,6 +73,8 @@ void	ft_forks_down(t_philo *philo)
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 
+	if (ft_mtx_get_stop(philo->table))
+		return ;
 	left_fork = &(philo->table->mtx_forks)[philo->id_left_fork];
 	right_fork = &(philo->table->mtx_forks)[philo->id_right_fork];
 	ft_mtx_unlock(philo->table, left_fork);
