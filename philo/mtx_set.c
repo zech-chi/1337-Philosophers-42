@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:39:28 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 22:30:26 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:10:36 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 void	ft_mtx_set_stop(t_table *table)
 {
 	if (pthread_mutex_lock(&table->mtx_stop))
-	{
-		ft_put_error(MUTEX_LOCK_ERROR);
 		return ;
-	}
 	table->stop = 1;
 	if (pthread_mutex_unlock(&table->mtx_stop))
-	{
-		ft_put_error(MUTEX_UNLOCK_ERROR);
 		return ;
-	}
 }
 
 void	ft_mtx_set_time_start(t_table *table)

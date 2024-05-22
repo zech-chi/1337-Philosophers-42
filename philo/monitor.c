@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:54:05 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 22:55:50 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:12:29 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_monitor_thread_create(t_table *table, pthread_t *id_thread_monitor)
 {
 	if (pthread_create(id_thread_monitor, NULL, &ft_monitor_job, table))
 	{
-		ft_put_error(CREAT_THREAD_ERROR);
 		ft_mtx_set_stop(table);
 		return (FAILED);
 	}
@@ -27,7 +26,6 @@ int	ft_monitor_thread_join(t_table *table, pthread_t id_thread_monitor)
 {
 	if (pthread_join(id_thread_monitor, NULL))
 	{
-		ft_put_error(JOIN_THREAD_ERROR);
 		ft_mtx_set_stop(table);
 		return (FAILED);
 	}

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:10:22 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/18 23:20:41 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:09:52 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@
 //error_id
 # define PARSING_ERROR -1
 # define MALLOC_ERROR -2
-# define CREAT_THREAD_ERROR -3
-# define JOIN_THREAD_ERROR -4
-# define MUTEX_CREAT_ERROR -5
-# define MUTEX_DESTROY_ERROR -6
-# define MUTEX_LOCK_ERROR -7
-# define MUTEX_UNLOCK_ERROR -8
 
 typedef struct s_philo	t_philo;
 typedef struct s_table	t_table;
@@ -112,7 +106,7 @@ void	ft_forks_down(t_philo *philo);
 /************************* philos.c *************************/
 int		ft_philos_create(t_table *table);
 void	ft_philos_init(t_table *table);
-int		ft_philos_join(t_table *table);
+int		ft_philos_detach(t_table *table);
 int		ft_philos_mtx_init(t_table *table);
 int		ft_philos_mtx_destroy(t_table *table);
 

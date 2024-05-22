@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:49:05 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 17:44:25 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:10:09 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int	ft_forks_init(t_table *table)
 	while (i < table->n_philosophers)
 	{
 		if (pthread_mutex_init(table->mtx_forks + i, NULL))
-		{
-			ft_put_error(MUTEX_CREAT_ERROR);
 			return (FAILED);
-		}
 		i++;
 	}
 	return (SUCCESS);

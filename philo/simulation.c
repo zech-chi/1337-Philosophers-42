@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:52:02 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/08 15:12:38 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:12:14 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ int	ft_one_philo(t_table *table)
 	if (pthread_create(id_thread_philo, NULL, \
 	ft_one_philo_routine, &(table->philos)[0]))
 	{
-		ft_put_error(CREAT_THREAD_ERROR);
 		ft_mtx_set_stop(table);
 		return (FAILED);
 	}
 	if (pthread_join(*id_thread_philo, NULL))
 	{
-		ft_put_error(JOIN_THREAD_ERROR);
 		ft_mtx_set_stop(table);
 		return (FAILED);
 	}
@@ -65,12 +63,11 @@ int	ft_simulation(t_table *table)
 		if (pthread_create(id_thread_philo, NULL, \
 		ft_routine, &(table->philos)[i]))
 		{
-			ft_put_error(CREAT_THREAD_ERROR);
 			return (ft_mtx_set_stop(table), FAILED);
 		}
 	}
 	ft_mtx_set_start(table);
-	if (ft_philos_join(table))
+	if (ft_philos_detach(table))
 		return (FAILED);
 	if (ft_monitor_thread_join(table, id_thread_monitor))
 		return (FAILED);

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:21:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/07 23:46:54 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:09:17 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,6 @@ void	ft_put_error(int error_id)
 		ft_put_on_stderr("Error: invalid arguments\n");
 	else if (error_id == MALLOC_ERROR)
 		ft_put_on_stderr("Error: failed to allocate memory\n");
-	else if (error_id == CREAT_THREAD_ERROR)
-		ft_put_on_stderr("Error: failed to create thread\n");
-	else if (error_id == JOIN_THREAD_ERROR)
-		ft_put_on_stderr("Error: failed to join thread\n");
-	else if (error_id == MUTEX_CREAT_ERROR)
-		ft_put_on_stderr("Error: failed to create mutex\n");
-	else if (error_id == MUTEX_DESTROY_ERROR)
-		ft_put_on_stderr("Error: failed to destroy mutex\n");
-	else if (error_id == MUTEX_LOCK_ERROR)
-		ft_put_on_stderr("Error: failed to lock mutex\n");
-	else if (error_id == MUTEX_UNLOCK_ERROR)
-		ft_put_on_stderr("Error: failed to unlock mutex\n");
 }
 
 void	ft_put_action(size_t time, t_philo *philo, int action)
