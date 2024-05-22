@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:10:22 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/22 09:09:52 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:24:18 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_put_action(size_t time, t_philo *philo, int action);
 int		ft_table_init(t_table *table);
 int		ft_table_mtx_init(t_table *table);
 int		ft_table_mtx_destroy(t_table *table);
-int		ft_table_destroy_them_all(t_table *table);
+void	ft_table_destroy_them_all(t_table *table);
 
 /************************* forks.c *************************/
 int		ft_forks_create(t_table *table);

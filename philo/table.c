@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:01:46 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/22 09:11:32 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:23:30 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,11 @@ int	ft_table_mtx_destroy(t_table *table)
 	return (SUCCESS);
 }
 
-int	ft_table_destroy_them_all(t_table *table)
+void	ft_table_destroy_them_all(t_table *table)
 {
-	int	err;
-
-	err = 0;
-	err += ft_forks_destroy(table, ft_mtx_get_n_philosophers(table));
-	err += ft_philos_mtx_destroy(table);
-	err += ft_table_mtx_destroy(table);
+	ft_forks_destroy(table, ft_mtx_get_n_philosophers(table));
+	ft_philos_mtx_destroy(table);
+	ft_table_mtx_destroy(table);
 	free(table->philos);
 	free(table->mtx_forks);
-	if (err)
-		return (FAILED);
-	return (SUCCESS);
 }
